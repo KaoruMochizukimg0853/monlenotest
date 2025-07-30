@@ -1,0 +1,16 @@
+Options -Indexes
+
+ErrorDocument 403 /insert/error/error.php
+ErrorDocument 404 /insert/error/error.php
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{THE_REQUEST} "/page"
+RewriteRule .* dummy\.php
+
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.+)([^/])$ $1$2\.php
+
+RewriteRule /insert/error/error.php - [R=404,L]
+
+DirectoryIndex page.html
