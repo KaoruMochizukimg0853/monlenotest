@@ -1,0 +1,1334 @@
+@font-face {
+    font-family: 'mainfont';
+    src: url('/insert/style/mainfont.ttf');
+}
+
+@font-face {
+    font-family: 'selectfont';
+    src: url('/insert/style/selectfont.ttf');
+}
+
+@-webkit-keyframes slide-right-on {
+    0% {
+        transform: translateX(-100px);
+    }
+
+    99% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        pointer-events: initial;
+        position: relative;
+    }
+}
+
+@-webkit-keyframes slide-right-off {
+    0% {
+        transform: translateX(-100px);
+    }
+
+    99% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        display: none;
+        position: relative;
+    }
+
+}
+
+@keyframes slide-right-on {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    99% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+        pointer-events: initial;
+        position: relative;
+    }
+}
+
+@keyframes slide-right-off {
+    0% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+
+    99% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(100px);
+        display: none;
+    }
+}
+
+@keyframes splash {
+    0% {
+        opacity: 1;
+        display: block;
+    }
+
+    50% {
+        opacity: 0;
+        display: block;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@-webkit-keyframes splash {
+    0% {
+        opacity: 1;
+        display: block;
+    }
+
+    50% {
+        opacity: 0;
+        display: block;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+
+
+
+body,
+body * {
+    font-family: 'mainfont';
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+}
+
+body {
+    position: relative;
+}
+
+.splash {
+    display: block;
+    position: fixed;
+    z-index: 100000;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    -webkit-animation: splash 1s forwards;
+    animation: splash 1s forwards;
+}
+
+div[MA_main_show=''] {
+    z-index: 1000;
+    pointer-events: none;
+    position: fixed;
+    opacity: 0;
+    display: none;
+}
+
+div[MA_main_show='off'] {
+    z-index: 1000;
+    pointer-events: none;
+    position: fixed;
+    -webkit-animation: slide-right-off 0.3s forwards;
+    animation: slide-right-off 0.3s forwards;
+}
+
+div[MA_main_show='on'] {
+    display: block;
+    z-index: 10000;
+    pointer-events: none;
+    position: fixed;
+    -webkit-animation: slide-right-on 0.3s forwards;
+    animation: slide-right-on 0.3s forwards;
+}
+
+div[MA_dialog_show='off'] {
+    display: none;
+}
+
+div[MA_dialog_show='on'] {}
+
+div[MA_under_show=''] {
+    z-index: 1000;
+    pointer-events: none;
+    position: fixed;
+    opacity: 0;
+    display: none;
+}
+
+
+
+div[MA_under_show='off'] {
+    z-index: 1000;
+    pointer-events: none;
+    position: fixed;
+    -webkit-animation: slide-right-off 0.3s forwards;
+    animation: slide-right-off 0.3s forwards;
+}
+
+div[MA_under_show='on'] {
+    display: block;
+    z-index: 10000;
+    pointer-events: none;
+    position: fixed;
+    -webkit-animation: slide-right-on 0.3s forwards;
+    animation: slide-right-on 0.3s forwards;
+}
+
+
+div[MA_left_show='off'] {
+    display: none;
+}
+
+div[MA_left_show='on'] {}
+
+div[MA_right_show=''] {
+    z-index: 1000;
+    pointer-events: none;
+    position: fixed;
+    opacity: 0;
+    display: none;
+}
+
+
+div[MA_right_show='off'] {
+    z-index: 1000;
+    pointer-events: none;
+    position: fixed;
+    -webkit-animation: slide-right-off 0.3s forwards;
+    animation: slide-right-off 0.3s forwards;
+}
+
+div[MA_right_show='on'] {
+    display: block;
+    z-index: 10000;
+    pointer-events: none;
+    position: fixed;
+    -webkit-animation: slide-right-on 0.3s forwards;
+    animation: slide-right-on 0.3s forwards;
+}
+
+div[MA_sub_show=''] {
+    z-index: 1000;
+    pointer-events: none;
+    position: fixed;
+    opacity: 0;
+    display: none;
+}
+
+
+div[MA_sub_show='off'] {
+    z-index: 1000;
+    pointer-events: none;
+    position: fixed;
+    -webkit-animation: slide-right-off 0.3s forwards;
+    animation: slide-right-off 0.3s forwards;
+}
+
+div[MA_sub_show='on'] {
+    display: block;
+    z-index: 10000;
+    pointer-events: none;
+    position: fixed;
+    -webkit-animation: slide-right-on 0.3s forwards;
+    animation: slide-right-on 0.3s forwards;
+}
+
+
+button[MA_button_show='on']{
+
+}
+
+button[MA_button_show='off']{
+    display:none;
+}
+
+
+.left_rayer {
+    float: left;
+}
+
+
+.right_position {
+    text-align: right;
+}
+
+
+/*ログインUI関係*/
+.login {
+    overflow-y: auto;
+    width: 100%;
+    height: 100vh;
+}
+
+.login_font{
+    font-size: 31px;
+}
+
+.login_form_3 {
+    display: flex;
+    font-size: 21px;
+}
+
+
+.login_form_3 img {
+    width: 30px;
+    height: 30px;
+}
+
+.login_form {
+    padding-top: 20px;
+    width: 100vw;
+    display: flex;
+    height: auto;
+    justify-content: center;
+}
+
+.login_password img{
+     transform: rotate( -116deg );
+}
+
+
+.login_txt {
+    display: inline-block;
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid rgb(124, 125, 126);
+    ;
+    box-sizing: border-box;
+    background: #f2f2f2;
+    margin: 0.5em 0;
+    border-radius: 5px;
+    /* 角丸をつける */
+}
+
+.login_form_2 {
+    padding: 40px;
+    width: 590px;
+    height: auto;
+}
+
+.login_theme {
+    font-size: 35px;
+    text-align: center;
+    width: 100vw;
+    background-color: rgb(29, 139, 190);
+    height: auto;
+}
+
+.login_theme>div {
+    padding: 45px;
+    color: white;
+}
+
+.login_radio {
+    text-align: center;
+    margin: auto;
+    font-size: 17px;
+}
+
+/*ラジオボタン関係*/
+input[type="radio"] {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+/*　ラジオボタン 未選択時の背景指定　*/
+label:has(input[type="radio"]) {
+    padding: 3px 0 3px 30px;
+    background: url('/insert/photo/nocheck.png') no-repeat left center;
+    background-size: 27px 27px;
+    cursor: pointer;
+    color: black;
+}
+
+
+/*　ラジオボタン 選択時の背景指定　*/
+label:has(input[type="radio"]:checked) {
+    background: url('/insert/photo/checked.png') no-repeat left center;
+    background-size: 27px 27px;
+    cursor: pointer;
+    color: rgb(27, 154, 215) !important;
+}
+
+
+.login_button {
+    font-size: 20px;
+    background-color: rgb(29, 139, 190);
+    width: 100%;
+    color: white;
+    border: none;
+    /* 枠線をなくす */
+    border-radius: 5px;
+    /* 角丸をつける */
+    padding: 10px 15px;
+    /* ボタンの内側の余白 */
+    margin: 5px;
+    /* ボタン同士の余白 */
+    text-align: center;
+    /* ボタンのテキストを中央揃えにする */
+    text-decoration: none;
+    /* テキストに下線をつけない */
+}
+
+/*ヘッダー関係-出席*/
+.lecture_hedder {
+    background-color: rgb(29, 139, 190);
+    height: 50px;
+    width: 100%;
+    font-size: 20px;
+    color: white;
+}
+
+
+.lecture_menu {
+    background-color: rgb(27, 154, 215);
+    width: 60px;
+    height: 50px;
+    float: left;
+}
+
+.lecture_menu img {
+    width: 60px;
+    height: 50px;
+}
+
+.lecture_hedder_right_rayer {
+    display: flex;
+    height: 50px;
+    float: right;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.lecture_hedder_left_rayer {
+    display: flex;
+    height: 50px;
+    float: left;
+    align-items: center;
+    margin-left: 15px;
+}
+
+/*ヘッダー関係-管理*/
+
+.admin_hedder {
+    background-color: rgb(29, 139, 190);
+    height: 50px;
+    width: 100%;
+    font-size: 20px;
+    color: white;
+}
+
+
+.admin_menu {
+    background-color: rgb(27, 154, 215);
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+
+.admin_menu img {
+    width: 50px;
+    height: 50px;
+}
+
+.admin_hedder_right_rayer {
+    display: flex;
+    height: 50px;
+    float: right;
+    align-items: center;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+.admin_hedder_left_rayer {
+    display: flex;
+    height: 50px;
+    float: left;
+    align-items: center;
+    margin-left: 15px;
+    font-size: 18px;
+}
+
+/*セレクトボックス関係*/
+
+select ,option{
+    font-family: 'selectfont';
+}
+
+select,input,textarea,*[onclick]{
+    cursor: pointer;
+}
+
+
+.selectbox-2{
+    width:400px;
+    flex-shrink: 0;
+    display:flex!important;
+    align-items:center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.selectbox-3 {
+    width:180px;
+    flex-shrink: 0;
+    position: relative;
+    margin:10px;
+}
+
+.selectbox-4{
+    width:100%;
+}
+
+.selectbox-font{
+    width:100%;
+    font-family: 'selectfont';
+}
+
+.selectbox-5{
+    width:100%;
+}
+
+.selectbox-5 select{
+    width:100%;
+    border-radius: 7px;
+    background-color: white;
+    appearance: none;
+    padding: .4em calc(.8em + 30px) .4em .8em;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    color: #1d1b1b;
+    font-size: 1em;
+    cursor: pointer;
+
+    /*ポインタ*/
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("/insert/photo/bar.png");
+    background-repeat: no-repeat;
+    background-size: 13px auto; /* 画像のサイズ（幅 高さ）*/
+    background-position: right 12px center; /* 画像の位置 */
+}
+
+/*新しい画像に置き換え（上向き）*/
+.selectbox-5 select:active{
+
+}
+
+
+.admin_lecture_select_rayer[MA_selectblock='on'] .admin_lecture_select_size{
+    height:auto;
+}
+.admin_lecture_select_rayer[MA_selectblock='on'] .admin_lecture_select_img{
+    transform: rotate(180deg);
+}
+
+.admin_lecture_select_rayer[MA_selectblock='off'] .admin_lecture_select_size{
+    height:0px;
+}
+
+
+
+/*.selectbox-3::after {
+    position: absolute;
+    right: 15px;
+    width: 10px;
+    height: 7px;
+    background-color: rgb(27, 154, 215);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    content: '';
+    pointer-events: none;
+}
+
+.selectbox-3 select {
+    appearance: none;
+    min-width: 150px;
+    height: 2.8em;
+    padding: .4em calc(.8em + 30px) .4em .8em;
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+    background-color: #fff;
+    color: #1d1b1b;
+    font-size: 1em;
+    cursor: pointer;
+}*/
+
+
+/*出席関係*/
+.lecture {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+.lecture_under_rayer {
+    width: 100%;
+    height: calc(100vh - 50px);
+    background-color: rgb(226, 226, 226);
+    position: relative;
+}
+
+
+.conditional_search {
+    background-color: gray;
+}
+
+
+.lecture_select {
+    min-width: 350px;
+    height: 930px;
+    overflow: auto;
+}
+
+.lecture_teacher{
+    margin-left: 10px;
+    width:100%;
+    font-size:15px;
+    text-overflow: ellipsis;
+}
+
+.lecture_name {
+    width:100%;
+    font-size: 25px;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+.lecture_weekday {
+    margin-right:10px;
+    width:100%;
+    color: rgb(27,154,215);
+    text-align: right;
+    text-overflow: ellipsis;
+}
+
+.lecture_table {
+    width: 100%;
+    padding-left: 5%;
+}
+
+
+.lecture_blue_rayer {
+    background-color: rgb(168, 254, 254);
+    width: 80%;
+    height: 100px;
+    margin: 30px;
+    border: 1px solid #70e5f0;
+}
+
+.lecture_size {
+    width: 512px
+}
+
+.grades_size {
+    width: 700px
+}
+
+.success {
+    color: red;
+    float: right;
+}
+
+
+/*管理-ホーム*/
+.admin /*orange*/{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.admin_under_rayer /*red*/{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(226, 226, 226);
+    position: relative;
+
+}
+
+.admin_home{
+    width:100%;
+    height:calc(100vh - 50px);
+}
+
+
+/*要検討（flex)*/
+.admin_home_select {
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: white;
+    width:calc(100% - 40px);
+    height:calc(100vh - 50px - 10px - 30px);
+    /*display: flex !important;*/
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /*align-content: center;*/
+    overflow-y: auto;
+    gap:0px;
+}
+
+.admin_home_hedder{
+    width:100%;
+    background-color: rgb(242,249,252);
+    height:30px;
+    display: flex !important;
+    align-items: center;
+    justify-content: baseline;
+}
+
+.admin_home_hedder_font{
+    width: 92px;
+    text-align: center;
+
+
+}
+
+.home_button_group {
+    margin:auto;
+    width: 100%;
+    max-width: 732px;
+    display: flex !important;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-shrink: 0;
+    gap:0px;
+}
+
+.home_button{
+    width:300px;
+    margin: 30px;
+    height:230px;
+    background-color:rgb(242,249,252) ;
+    border: 3px solid rgb(131,203,239);
+    border-radius: 40px;     
+    box-shadow:2px 2px 2px 0px rgba(0,0,0,1) ;
+}
+
+.home_button_font{
+    font-size: 22px;
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 10px;
+}
+
+
+.home_button_img{
+    width: 300px;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.home_button_img img{
+    width: 200px;
+    height: 130px;
+    object-fit: contain;
+}
+
+
+
+
+.home_span {
+    font-size: 17px;
+    text-align: center;
+    color: red;
+}
+
+.home_button button {
+    width: 200px;
+    height: 80px;
+    margin: 50px;
+}
+
+.home_button[MA_hidden='on']{
+    background-color:rgba(242,249,252,0.2) ;
+    border: 3px solid rgba(131,203,239,0.2);   
+    box-shadow:2px 2px 2px 0px rgba(0,0,0,0.2) ;
+    pointer-events: none;
+}
+.home_button[MA_hidden='off']:hover{
+    box-shadow: none;
+    transform: translate(2px,2px);
+}
+.home_button[MA_hidden='on']>.home_button_img{
+    opacity: 0.2;
+}
+
+.home_button[MA_hidden='on']>.home_button_font{
+    opacity: 0.2;
+}
+
+.home_button[MA_hidden='off']>.home_span{
+    display: none;
+}
+
+.home_button[MA_hidden='none']{
+    display: none;
+}
+
+
+
+
+
+
+
+/*左レイヤーボタン*/
+.manage_season{
+    width:100%;
+    height:calc(100vh - 50px);
+}
+
+.admin_season_select{
+    width:100%;
+    height:calc(100vh - 50px - 30px);
+    overflow-y: auto;
+}
+
+.season_select_button{
+    text-align:center;
+    margin-bottom: 2px;
+    height:calc((100vh - 50px - 30px - 14px)/4 + 2px);
+    min-height: 50px;
+    width:100%;
+    background-color:white;
+    display: flex!important;
+}
+
+.season_select_submit{
+    text-align:center;
+    height:calc((100vh - 50px - 30px - 14px)/8 * 3 + 4px);
+    min-height:50px;
+    width:100%;
+    background-color:white;
+}
+
+.season_select_button_img{
+    width:30px;
+    align-content: center;
+}
+.season_select_button_img img{
+    width:30px;
+}
+
+.season_select_button_font{
+    width:200px;
+    text-align: center;
+}
+
+.season_select_button[MA_select='on']{
+    background-color: rgb(242,249,252);
+    color:rgb(27,154,215);
+}
+.season_select_submit[MA_select='on']{
+    background-color: rgb(242,249,252);
+    color:rgb(27,154,215);
+}
+
+
+/*右レイヤー共通*/
+.right_rayer {
+    float: right;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #333333;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border: 1px solid #333333;
+}
+
+td {
+    border: solid 1px black;
+    padding: 10px;
+    text-align: center;
+    min-width: 150px;
+    width:100%;
+}
+
+.admin_blue_rayer {
+    background-color: rgb(242,249,252);
+    max-width: 400px;
+    flex-shrink: 0;
+    width: 100%;
+    margin: 10px;
+    border: 1px solid rgb(173,209,232);
+    border-radius: 7px;
+}
+
+.admin_blue_rayer:hover{
+    border: 1px solid rgb(255, 111, 0);
+}
+
+/*各種情報*/
+.admin_manage{
+    width:100%;
+    height:calc(100vh - 50px);
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+.admin_right_rayer{
+    width:calc(100% - 230px);
+    height:calc(100vh - 50px);
+    position: relative;
+}
+
+.admin_left_rayer{
+    width: 230px;
+    height: calc(100vh - 50px);
+    position:relative;
+}
+
+.manage_information{
+    width: 100%;
+    height:calc(100vh - 50px);
+}
+
+.manage_hedder{
+    width:100%;
+    background-color: rgb(242,249,252);
+    height:30px;
+    display: flex!important;
+}
+
+.manage_hedder_font{
+    width:50%;
+    display: flex!important;
+    align-items: center;
+}
+
+.manage_hedder_font_size{
+    text-align: center;
+    width:92px;
+}
+
+.manage_hedder_img_size{
+    width:23px;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+}
+
+.manage_hedder img{
+    width:15px;
+    transform: rotate(270deg);
+}
+
+.manage_button{
+    width:100%;
+    height:calc(100vh - 50px - 30px);
+    overflow-y: auto;
+}
+
+
+
+.manage_select_button{
+    text-align:center;
+    margin-bottom: 2px;
+    height:calc((100vh - 50px - 30px - 14px)/8);
+    min-height:50px;
+    width:100%;
+    background-color: white;
+    display: flex!important;
+}
+.manage_department_button{
+    text-align:center;
+    height:calc((100vh - 50px - 30px - 14px)/8);
+    min-height:50px;
+    width:100%;
+    background-color: white;
+    display: flex!important;
+}
+
+.manage_select_button_img{
+    margin: 20px;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+}
+
+.manage_select_button_font{
+    font-size: 18px;
+    text-align: center;
+    display: flex!important;
+    align-items: center;
+}
+
+.manage_select_button img{
+    width:30px;
+}
+.manage_department_button img{
+    width:30px;
+}
+
+.manage_select_button[MA_select='on']{
+    background-color: rgb(242,249,252);
+    color:rgb(27,154,215);
+}
+
+.manage_select_button:hover{
+    background-color: rgb(242,249,252);
+    color:rgb(27,154,215);
+}
+
+.manage_department_button[MA_select='on']{
+    background-color: rgb(242,249,252);
+    color:rgb(27,154,215);
+}
+
+.manage_department_button:hover{
+    background-color: rgb(242,249,252);
+    color:rgb(27,154,215);
+}
+
+
+
+/*管理-各種-出席*/
+
+.admin_lecture {
+    width: 100%;
+    height:calc(100vh - 50px);
+}
+
+.admin_lecture_rayer{
+    width:calc(100% - 40px);
+    height:calc(100vh - 50px - 30px - 12px);
+    display: flex !important;
+    flex-direction:column;
+    align-items: stretch;
+    /*justify-content: center;*/
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: white;
+    position:relative;
+}
+
+
+.admin_lecture_select_rayer{
+    width:100%;
+    flex-shrink: 0;
+}
+
+.admin_lecture_select {
+    margin:10px;
+    width:calc(100% - 40px);
+    background-color: rgb(226,226,226);
+    padding:10px;
+}
+
+
+/*表示・非表示は相談*/
+.admin_lecture_select_size {
+    width:100%;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-height: 160px;
+    overflow: auto;
+}
+
+.admin_lecture_select_img{
+    position:relative;
+    width:20px;
+    float: right;
+    margin:10px;
+}
+
+.admin_lecture_select_img img{
+    width:20px;
+}
+
+.admin_lecture_select_font {
+    margin: 10px;
+}
+
+.lecture_table_rayer{
+    width:100%;
+    height:100vh;
+    position:relative;
+    overflow:auto
+}
+
+
+
+
+.admin_lecture_table {
+    margin-left: 20px;
+    margin-right: 20px;
+    width:calc(100% - 40px);
+    overflow: auto;
+    display: flex!important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.attend_second {
+    width: 100%;
+    height:calc(100vh - 50px);
+}
+
+.attend_second_rayer{
+    width:calc(100% - 40px);
+    height:calc(100vh - 50px - 30px - 12px);
+    display: flex !important;
+    flex-direction:column;
+    align-items: stretch;
+    /*justify-content: center;*/
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: white;
+    position:relative;
+}
+
+
+.attend_table {
+    width: 100%;
+    border: 1px solid #333333;
+    overflow: auto;
+}
+
+.admin_lecture_name_font{
+    width:100%;
+    font-size: 18px;
+}
+
+
+
+
+/*管理-各種-成績*/
+.grades_first {
+    width: 100%;
+    height:calc(100vh - 50px);
+}
+
+.grades_second {
+    width: 100%;
+    height:calc(100vh - 50px);
+}
+
+.grades_table {
+    width: 100%;
+    border: 1px solid #333333;
+    overflow: auto;
+}
+
+.grades_second_rayer{
+    width:calc(100% - 40px);
+    height:calc(100vh - 50px - 30px - 12px);
+    display: flex !important;
+    flex-direction:column;
+    align-items: stretch;
+    /*justify-content: center;*/
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: white;
+    position:relative;
+}
+
+/*管理-各種-履修*/
+.couese {
+    height: 100px;
+    float: right;
+}
+
+.course_button {
+    text-align: center;
+}
+
+.course_button button {
+    margin: 15px;
+    width: 200px;
+    height: 50px;
+}
+
+.course_table {
+    width: 600px;
+    border: 1px solid #333333;
+    height: 400px;
+    overflow: auto;
+}
+
+/*管理-各種-授業*/
+.setting_lecture {
+    height: 100px;
+    float: right;
+}
+
+.lecture_button {
+    text-align: center;
+}
+
+.lecture_button button {
+    margin: 15px;
+    width: 200px;
+    height: 50px;
+}
+
+.setting_lecture_table {
+    width: 800px;
+    border: 1px solid #333333;
+    height: 400px;
+    overflow: auto;
+}
+
+/*管理-各種-学生*/
+.student {
+    height: 100px;
+    float: right;
+}
+
+.student_button {
+    text-align: center;
+}
+
+.student_button button {
+    margin: 15px;
+    width: 200px;
+    height: 50px;
+}
+
+.studenttable {
+    border: 1px solid #333333;
+    height: 400px;
+    width: 800px;
+    overflow: auto;
+}
+
+/*管理-各種-講師*/
+.teacher {
+    height: 100px;
+    float: right;
+}
+
+.teacher_button button {
+    margin: 15px;
+    width: 200px;
+    height: 50px;
+}
+
+.teachertable {
+    border: 1px solid #333333;
+    height: 400px;
+    overflow-y: auto;
+}
+
+/*管理-各種-学科*/
+.department {
+    height: 100px;
+    float: right;
+}
+
+.department_button button {
+    margin: 15px;
+    width: 200px;
+    height: 50px;
+}
+
+.departmenttable {
+    border: 1px solid #333333;
+    height: 400px;
+    overflow-y: auto;
+}
+
+/*文書印刷用*/
+
+.book_return {
+    margin: 15px;
+    width: 90px;
+    height: 25px;
+}
+
+.book_button {
+    margin: 15px;
+    width: 400px;
+    height: 25px;
+}
+
+.book_textarea {
+    margin: 30px;
+    width: 400px;
+    height: 100px;
+}
+
+.book_submit {
+    margin: 30px;
+    width: 200px;
+    height: 40px;
+}
+
+iframe {
+    border: none;
+    margin: 0px;
+    width: 250px;
+    height: 350px;
+    overflow: hidden;
+}
+
+/*ダイアログ関係*/
+.menu1 {
+    background-color: rgba(200, 200, 200, 0.4);
+    top: 0px;
+    left: 0px;
+    z-index: 1000000;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu2 {
+    border: 1px solid black;
+    background-color: white;
+    padding: 10px;
+    width: 500px;
+    height: 580px;
+    overflow: auto;
+}

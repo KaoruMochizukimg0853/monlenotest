@@ -1,0 +1,2673 @@
+<!--日建学生台帳システム-->
+<!DOCTYPE html>
+<html lang='ja'>
+
+<head>
+    <meta charset='UTF-8'>
+    <link rel='stylesheet' href='/insert/style/style.css'>
+    <title>日建学生台帳システム</title>
+</head>
+
+<body style='position: relative;' MA_readyflag="">
+    <!--スプラッシュ-->
+    <div class='splash'>
+
+    </div>
+
+
+
+    <!--ローディング画面-->
+
+
+
+    <!--出欠・管理用ログイン-->
+    <div MA_main='login' MA_main_show='on' class='login'>
+        <div class='login_theme'>
+            <div class='login_font'>日建　学生台帳システムv1.0</div>
+        </div>
+        <div class='login_form'>
+            <div class='login_form_2'>
+                <form MA_form='login_form' ACTION='javascript:void(0);'>
+                    <div>
+                        <div class='login_form_3'>
+                            <div class='radio_img'>
+                                <img src='/insert/photo/login_userid.png'>
+                            </div>
+                            <div>
+                                ログインID
+                            </div>
+                        </div>
+                        <div>
+                            <input type='text' class='login_txt' name='loginid' required>
+                        </div>
+                    </div>
+                    <div>
+                        <div class='login_form_3'>
+                            <div class='login_password'>
+                                <img src='/insert/photo/login_password.svg'>
+                            </div>
+                            <div>
+                                パスワード
+                            </div>
+                        </div>
+                        <div>
+                            <input type='password' class='login_txt' name='pass' required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class='login_radio'>
+                        <div>
+                            <label><input type="radio" name="account_change" value='1' checked>出欠アカウントでログイン</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label><input type="radio" name="account_change" value='2'>管理アカウントでログイン</label>
+                        </div>
+                        <br>
+                    </div>
+                </form>
+                <div><button type='button' class='login_button' onclick='TA0009_Login();'>ログインする</button></div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--ログインエラー-->
+    <div MA_dialog='login_none' MA_dialog_show='off'>
+        <form MA_id='login_none' ACTION='javascript:void(0);'>
+            <div class='menu1'>
+                <div class='menu2'>
+                    <div>「ログインID」か「パスワード」が正しくありません。</div>
+                    <div>確認してからもう一度入力してください</div><br>
+                    <div><button type='button'>戻る</button></div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--出欠アカウントでログイン-->
+    <!--出欠ホーム画面-->
+    <div MA_main='sub' MA_main_show='' class='lecture'>
+        <!--ホーム画面-上レイヤー-->
+        <div class='lecture_hedder'>
+            <div class='lecture_menu'>
+                <img src='/insert/photo/menu.png'>
+            </div>
+            <div class='lecture_hedder_right_rayer'>
+                <span MA_id='season_sub'></span><br>
+            </div>
+            <div class='lecture_hedder_left_rayer'>
+                日建 学生台帳システムv1.0
+            </div>
+        </div>
+
+
+
+        <!--ホーム画面-下レイヤー-->
+        <div MA_frame='sub_under_frame' class='lecture_under_rayer'>
+            <div MA_sub='attend_first' MA_sub_show='on'>
+                <div class='admin_home_hedder'>
+                    <div class='admin_home_hedder_font'>
+                        出欠
+                    </div>
+                </div>
+                <div class='admin_lecture_rayer'>
+                    <div class='admin_lecture_select_rayer' MA_selectblock='on'>
+                        <div class='admin_lecture_select'>
+                            <div class='admin_lecture_select_img'>
+                                <img src='/insert/photo/bar.png'>
+                            </div>
+                            <div class='admin_lecture_select_font'>
+                                条件検索
+                            </div>
+                            <form MA_form='sub_attend_form' ACTION='javascript:void(0);'>
+                                <div class='admin_lecture_select_size'>
+                                    <div class='selectbox-2'>
+                                        <div class='selectbox-3'>
+                                            <div class='selectbox-4'>
+                                                <div class='selectbox-font'>曜日</div>
+                                                <div class='selectbox-5'>
+                                                    <select name="week_day">
+                                                        <option value='1'>月曜</option>
+                                                        <option value='2'>試験</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='selectbox-3'>
+                                            <div class='selectbox-4'>
+                                                <div class='selectbox-font'>先生</div>
+                                                <div class='selectbox-5'>
+                                                    <select name="teacher">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='selectbox-2'>
+                                        <div class='selectbox-3'>
+                                            <div class='selectbox-4'>
+                                                <div class='selectbox-font'>学年</div>
+                                                <div class='selectbox-5'>
+                                                    <select name="grade">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='selectbox-3'>
+                                            <div class='selectbox-4'>
+                                                <div class='selectbox-font'>学科</div>
+                                                <div class='selectbox-5'>
+                                                    <select name="subject">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class='lecture_table_rayer'>
+                        <div MA_frame="lecture_select" class='admin_lecture_table'>
+                            <div class='admin_blue_rayer'>
+                                <div class='lecture_teacher'>A先生</div>
+                                <div class='lecture_name'>CAD2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築構造2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築法規2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>CAD2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築構造2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築法規2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>CAD2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築構造2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築法規2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>CAD2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築構造2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築法規2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>CAD2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築構造2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築法規2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>CAD2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築構造2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築法規2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--出欠-->
+            <div MA_sub='attend_second' MA_sub_show=''>
+                <div class='lecture_size'>
+                    <div><button type='button'>↑授業選択に戻る</button></div>
+                    <div class='right_position'><span MA_character='lecture_name'>CAD2</span></div>
+                    <button type='button' MA_button='lecture_end' MA_button_show='on'>授業を終了する</button>
+                    <button type='button' MA_button='lock' MA_button_show='off'>ロックをする</button>
+                    <button type='button' MA_button='cancellation' MA_button_show='off'>ロックを解除する</button>
+                    <select MA_select='sub_order' class='right_rayer'>
+                        <option value='1'>2回目</option>
+                        <option value='2'>3回目</option>
+                    </select>
+                    <div><span MA_character='sub_implementation' class='right_rayer'>未実施</span></div>
+                </div>
+                <div>
+                    <table MA_table='sub_attend'>
+                        <thead>
+                            <tr>
+                                <td>学籍番号</td>
+                                <td>名前</td>
+                                <td>出欠</td>
+                            </tr>
+                        </thead>
+                        <tbody MA_id='attend_table'>
+                            <tr>
+                                <td>2000001</td>
+                                <td>田中太郎</td>
+                                <td>
+                                    <label><input type="radio" name='change'>出席</label>
+                                    <label><input type="radio" name='change'>遅刻</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2000001</td>
+                                <td>田中太郎</td>
+                                <td>
+                                    <label><input type="radio" name='change'>出席</label>
+                                    <label><input type="radio" name='change'>遅刻</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2000001</td>
+                                <td>田中太郎</td>
+                                <td>
+                                    <label><input type="radio" name='change'>出席</label>
+                                    <label><input type="radio" name='change'>遅刻</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2000001</td>
+                                <td>田中太郎</td>
+                                <td>
+                                    <label><input type="radio" name='change'>出席</label>
+                                    <label><input type="radio" name='change'>遅刻</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2000001</td>
+                                <td>田中太郎</td>
+                                <td>
+                                    <label><input type="radio" name='change'>出席</label>
+                                    <label><input type="radio" name='change'>遅刻</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2000001</td>
+                                <td>田中太郎</td>
+                                <td>
+                                    <label><input type="radio" name='change'>出席</label>
+                                    <label><input type="radio" name='change'>遅刻</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2000001</td>
+                                <td>田中太郎</td>
+                                <td>
+                                    <label><input type="radio" name='change'>出席</label>
+                                    <label><input type="radio" name='change'>遅刻</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2000001</td>
+                                <td>田中太郎</td>
+                                <td>
+                                    <label><input type="radio" name='change'>出席</label>
+                                    <label><input type="radio" name='change'>遅刻</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2000001</td>
+                                <td>田中太郎</td>
+                                <td>
+                                    <label><input type="radio" name='change'>出席</label>
+                                    <label><input type="radio" name='change'>遅刻</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2000001</td>
+                                <td>田中太郎</td>
+                                <td>
+                                    <label><input type="radio" name='change'>出席</label>
+                                    <label><input type="radio" name='change'>遅刻</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2000001</td>
+                                <td>田中太郎</td>
+                                <td>
+                                    <label><input type="radio" name='change'>出席</label>
+                                    <label><input type="radio" name='change'>遅刻</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--試験-->
+            <div MA_sub='grades_second' MA_sub_show=''>
+                <div class='grades_size'>
+                    <div><button type='button'>↑授業選択に戻る</button></div> 
+                    <div class='right_position'><span MA_character='lecture_name'>CAD2</span></div>
+                    <button type='button' MA_button='lock' MA_button_show='on'>ロックする</button>
+                    <button type='button' MA_button='cancellation' MA_button_show='off'>ロックを解除する</button>
+                    <button type='button' MA_button='keep' MA_button_show='off'>試験入力を終了する</button>
+                    <select MA_select='sub_grades_exam' class='right_rayer'>
+                        <option value='1'>前期中間</option>
+                        <option value='2'>前期期末</option>
+                    </select>
+                    <div class='success'><span MA_character='management_implementation'>未実施</span></div>
+                </div>
+                <div class='grades_table'>
+                    <table MA_table='sub_grades'>
+                        <thead>
+                            <tr>
+                                <td>学籍番号</td>
+                                <td>試験</td>
+                                <td>前期中間</td>
+                                <td>前期期末</td>
+                                <td>前期中間</td>
+                                <td>前期期末</td>
+                                <td>総合</td>
+                                <td>評価</td>
+                            </tr>
+                        </thead>
+                        <tbody MA_id='attend_test_table'>
+                            <tr>
+                                <td>2000001</td>
+                                <td>田中太郎</td>
+                                <td>前期中間：〇点</td>
+                                <td>前期期末：〇点</td>
+                                <td>後期中間：〇点</td>
+                                <td>後期期末：〇点</td>
+                                <td>総合</td>
+                                <td>良</td>
+                            </tr>
+                            <tr>
+                                <td>2000002</td>
+                                <td>田中太郎</td>
+                                <td>前期中間：〇点</td>
+                                <td>前期期末：〇点</td>
+                                <td>後期中間：〇点</td>
+                                <td>後期期末：〇点</td>
+                                <td>総合</td>
+                                <td>良</td>
+                            </tr>
+                            <tr>
+                                <td>2000003</td>
+                                <td>田中太郎</td>
+                                <td>前期中間：〇点</td>
+                                <td>前期期末：〇点</td>
+                                <td>後期中間：〇点</td>
+                                <td>後期期末：〇点</td>
+                                <td>総合</td>
+                                <td>良</td>
+                            </tr>
+                            <tr>
+                                <td>2000004</td>
+                                <td>田中太郎</td>
+                                <td>前期中間：〇点</td>
+                                <td>前期期末：〇点</td>
+                                <td>後期中間：〇点</td>
+                                <td>後期期末：〇点</td>
+                                <td>総合</td>
+                                <td>良</td>
+                            </tr>
+                            <tr>
+                                <td>2000005</td>
+                                <td>田中太郎</td>
+                                <td>前期中間：〇点</td>
+                                <td>前期期末：〇点</td>
+                                <td>後期中間：〇点</td>
+                                <td>後期期末：〇点</td>
+                                <td>総合</td>
+                                <td>良</td>
+                            </tr>
+                            <tr>
+                                <td>2000006</td>
+                                <td>田中太郎</td>
+                                <td>前期中間：〇点</td>
+                                <td>前期期末：〇点</td>
+                                <td>後期中間：〇点</td>
+                                <td>後期期末：〇点</td>
+                                <td>総合</td>
+                                <td>良</td>
+                            </tr>
+                            <tr>
+                                <td>2000007</td>
+                                <td>田中太郎</td>
+                                <td>前期中間：〇点</td>
+                                <td>前期期末：〇点</td>
+                                <td>後期中間：〇点</td>
+                                <td>後期期末：〇点</td>
+                                <td>総合</td>
+                                <td>良</td>
+                            </tr>
+                            <tr>
+                                <td>2000008</td>
+                                <td>田中太郎</td>
+                                <td>前期中間：〇点</td>
+                                <td>前期期末：〇点</td>
+                                <td>後期中間：〇点</td>
+                                <td>後期期末：〇点</td>
+                                <td>総合</td>
+                                <td>良</td>
+                            </tr>
+                            <tr>
+                                <td>2000009</td>
+                                <td>田中太郎</td>
+                                <td>前期中間：〇点</td>
+                                <td>前期期末：〇点</td>
+                                <td>後期中間：〇点</td>
+                                <td>後期期末：〇点</td>
+                                <td>総合</td>
+                                <td>良</td>
+                            </tr>
+                            <tr>
+                                <td>20000010</td>
+                                <td>田中太郎</td>
+                                <td>前期中間：〇点</td>
+                                <td>前期期末：〇点</td>
+                                <td>後期中間：〇点</td>
+                                <td>後期期末：〇点</td>
+                                <td>総合</td>
+                                <td>良</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--出欠アカウントのUIはここまで-->
+
+
+    <!--管理アカウントでログイン-->
+    <!--管理画面-->
+    <div MA_main='admin' MA_main_show='' class='admin'>
+        <!--上レイヤー-->
+        <div class='admin_hedder'>
+            <div class='admin_menu'>
+                <img src='/insert/photo/menu.png'>
+            </div>
+            <div class='admin_hedder_right_rayer'>
+                <span MA_id='season_admin'></span>
+            </div>
+            <div class='admin_hedder_left_rayer'>
+                日建 学生台帳システムv1.0
+            </div>
+        </div>
+        <!--下レイヤー-->
+        <div MA_frame='admin_under_frame' class='admin_under_rayer'>
+            <!--ホーム画面-下レイヤー-->
+            <div MA_under='home' MA_under_show='on' class='admin_home'>
+                <div class='admin_home_hedder'>
+                    <div class='admin_home_hedder_font'>
+                        ホーム
+                    </div>
+                </div>
+                <div class='admin_home_select'>
+                    <div class='home_button_group'>
+                        <div class='home_button' MA_hidden='off' MA_button='season_start'>
+                            <div class='home_button_img'><img src='/insert/photo/season_start.png'></div>
+                            <div class='home_button_font'>学期準備</div>
+                            <div class='home_span'><span MA_text='implemented'>学期準備済みです</span></div>
+                        </div>
+                        <div class='home_button' MA_hidden='on' MA_button='season_end'>
+                            <div class='home_button_img'><img src='/insert/photo/season_end.png'></div>
+                            <div class='home_button_font'>学期締め</div>
+                            <div class='home_span'><span MA_text='no_implemented'>学期準備が未実施です</span></div>
+                        </div>
+                        <div class='home_button' MA_hidden='none' MA_button='year_end'>
+                            <div class='home_button_img'><img src='/insert/photo/season_end.png'></div>
+                            <div class='home_button_font'>年度締め</div>
+                            <div class='home_span'><span MA_text='no_implemented'>学期準備が未実施です</span></div>
+                        </div>
+                    </div>
+
+                    <div class='home_button_group'>
+                        <div class='home_button' MA_hidden='off'>
+                            <div class='home_button_img'><img src='/insert/photo/printing.png'></div>
+                            <div class='home_button_font'>文書印刷</div>
+                        </div>
+                        <div class='home_button' MA_hidden='off'>
+                            <div class='home_button_img'><img src='/insert/photo/manage.png'></div>
+                            <div class='home_button_font'>各種情報</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--文書印刷-->
+            <div MA_under='printing' MA_under_show=''>
+                <!--右レイヤー-->
+                <div class='right_rayer'>
+                    <div>プレビュー</div>
+                    <!--画像表示-->
+                    <iframe MA_frame='printing_name' src='/insert/photo/kojinseiseki.png'></iframe>
+                </div>
+                <!--左レイヤー-->
+                <div>
+                    <div><button type='button' class='book_return'>←戻る</button></div>
+                    <div><button type='button' class='book_button' MA_button='printing_name'>成績証明書2025/5/8版</button>
+                    </div>
+                    <div><button type='button' class='book_button'>出席簿ウィークリー</button></div>
+                    <div>説明文：</div>
+                    <div>
+                        <input type='text' class='book_textarea' MA_text='printing_name' value='学生を選択する必要があります。A4紙サイズ'
+                            readonly>
+                    </div>
+                    <div><button type='button' class='book_submit'>印刷する</button></div>
+                </div>
+            </div>
+            <!--文書印刷２-->
+            <div MA_under='printing_select' MA_under_show=''>
+                <div>
+                    <button type='button'>←戻る</button>
+                    <button type='button'>以下の内容で印刷する</button>
+                </div>
+                <form MA_form='printing_form' ACTION='javascript:void(0);'>
+                    <div name='printing_frame'>
+                        <div>対象の学生：未選択 <button type='button'>選択する</button></div>
+                        <div>対象の学科：未選択 <button type='button'>選択する</button></div>
+                        <div>日付範囲（開始）：<input type='date'></div>
+                        <div>日付範囲（終了）：<input type='date'></div>
+                    </div>
+                </form>
+
+            </div>
+            <!--それ以外-->
+            <div MA_under='manage' MA_under_show='' class='admin_manage'>
+                <!--左レイヤー-->
+                <div MA_frame='admin_left_frame' class='admin_left_rayer'>
+                    <!--学期開始前の準備をする-->
+                    <div MA_left='season_start' MA_left_show='off' class='admin_season'>
+                        <div class='manage_hedder'>
+                            <div class='manage_hedder_font_size'>
+                                ホーム
+                            </div>
+                            <div class='manage_hedder_font_img'>
+                                <img src='/insert/photo/bar.png'>
+                            </div>
+                            <div class='manage_hedder_font_size'>
+                                学期準備
+                            </div>
+                            <div class='manage_hedder_font_img'>
+                                <img src='/insert/photo/bar.png'>
+                            </div>
+                        </div>
+                        <div class='admin_season_select'>
+                            <div MA_select='off' class='manage_select_button'>
+                                <div class='manage_select_button_img'>
+                                    <img src='/insert/photo/return.svg'>
+                                </div>
+                                <div class='manage_select_button_font'>
+                                    戻 る
+                                </div>
+                            </div>
+                            <div MA_select='on' class='season_select_button'>
+                                <div class="season_select_button_img">
+                                    <img src='/insert/photo/student.png'>
+                                </div>
+                                <div class="season_select_button_font">
+                                    学 生
+                                </div>
+                            </div>
+                            <div MA_select='off' class='season_select_button'>
+                                <div class="season_select_button_img">
+                                    <img src='/insert/photo/subject.svg'>
+                                </div>
+                                <div class="season_select_button_font">
+                                    履 修
+                                </div>
+                            </div>
+                            <div class='season_select_submit'>
+                                学期準備を終了する
+                            </div>
+                        </div>
+                    </div>
+                    <!--学期末を対応する-->
+                    <div MA_left='season_end' MA_left_show='off' class='admin_season'>
+                        <div class='manage_hedder'>
+                            <div class='manage_hedder_font_size'>
+                                ホーム
+                            </div>
+                            <div class='manage_hedder_font_img'>
+                                <img src='/insert/photo/bar.png'>
+                            </div>
+                            <div class='manage_hedder_font_size'>
+                                学期締め
+                            </div>
+                            <div class='manage_hedder_font_size'>
+                                <img src='/insert/photo/bar.png'>
+                            </div>
+                        </div>
+                        <div MA_select='off' class='manage_select_button'>
+                            <img src='/insert/photo/return.svg'>
+                            戻 る
+                        </div>
+                        <div MA_select='on' class='season_select_button'>
+                            <img src='/insert/photo/user_icon.svg'>
+                            出 欠
+                        </div>
+                        <div MA_select='off' class='season_select_button'>
+                            <img src='/insert/photo/grades.svg'>
+                            成 績
+                        </div>
+                        <div class='season_select_submit'>
+                            学期締めを終了する
+                        </div>
+                    </div>
+                    <!--最後の学期だった場合-->
+                    <div MA_left='year_end' MA_left_show='off' class='admin_season'>
+                        <div class='manage_hedder'>
+                            <div class='manage_hedder_font_size'>
+                                ホーム
+                            </div>
+                            <div class='manage_hedder_img_size'>
+                                <img src='/insert/photo/bar.png'>
+                            </div>
+                            <div class='manage_hedder_font_size'>
+                                年度締め
+                            </div>
+                            <div class='manage_hedder_img_size'>
+                                <img src='/insert/photo/bar.png'>
+                            </div>
+                        </div>
+                        <div MA_select='off' class='manage_select_button'>
+                            <div class='manage_select_button_img'>
+                                <img src='/insert/photo/return.svg'>
+                            </div>
+                            <div class='manage_select_button_font'>
+                                戻 る
+                            </div>
+                        </div>
+                        <div MA_select='on' class='season_select_button'>
+                            <img src='/insert/photo/user_icon.svg'>
+                            出 欠
+                        </div>
+                        <div MA_select='off' class='season_select_button'>
+                            <img src='/insert/photo/grades.svg'>
+                            成 績
+                        </div>
+                        <div class='season_select_submit'>
+                            年度締めを終了する
+                        </div>
+                    </div>
+                    <!--各種情報を確認-->
+                    <div MA_left='information' MA_left_show='on' class='manage_information'>
+                        <div class='manage_hedder'>
+                            <div class='manage_hedder_font'>
+                                <div class='manage_hedder_font_size'>
+                                    ホーム
+                                </div>
+                                <div class='manage_hedder_img_size'>
+                                    <img src='/insert/photo/bar.png'>
+                                </div>
+                            </div>
+                            <div class='manage_hedder_font'>
+                                <div class='manage_hedder_font_size'>
+                                    各種情報
+                                </div>
+                                <div class='manage_hedder_img_size'>
+                                    <img src='/insert/photo/bar.png'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='manage_button'>
+                            <div MA_select='off' class='manage_select_button'>
+                                <div class='manage_select_button_img'>
+                                    <img src='/insert/photo/return.svg'>
+                                </div>
+                                <div class='manage_select_button_font'>
+                                    戻 る
+                                </div>
+                            </div>
+                            <div MA_select='on' class='manage_select_button'>
+                                <div class='manage_select_button_img'>
+                                    <img src='/insert/photo/user_icon.svg'>
+                                </div>
+                                <div class='manage_select_button_font'>
+                                    出 欠
+                                </div>
+                            </div>
+                            <div MA_select='off' class='manage_select_button'>
+                                <div class='manage_select_button_img'>
+                                    <img src='/insert/photo/grades.svg'>
+                                </div>
+                                <div class='manage_select_button_font'>
+                                    成 績
+                                </div>
+                            </div>
+                            <div MA_select='off' class='manage_select_button'>
+                                <div class='manage_select_button_img'>
+                                    <img src='/insert/photo/subject.svg'>
+                                </div>
+                                <div class='manage_select_button_font'>
+                                    履 修
+                                </div>
+                            </div>
+                            <div MA_select='off' class='manage_select_button'>
+                                <div class='manage_select_button_img'>
+                                    <img src='/insert/photo/course.png'>
+                                </div>
+                                <div class='manage_select_button_font'>
+                                    授 業
+                                </div>
+                            </div>
+                            <div class='manage_select_button'>
+                                <div class='manage_select_button_img'>
+                                    <img src='/insert/photo/student.png'>
+                                </div>
+                                <div class='manage_select_button_font'>
+                                    学 生
+                                </div>
+                            </div>
+                            <div class='manage_select_button'>
+                                <div class='manage_select_button_img'>
+                                    <img src='/insert/photo/teacher.png'>
+                                </div>
+                                <div class='manage_select_button_font'>
+                                    講 師
+                                </div>
+                            </div>
+                            <div class='manage_department_button'>
+                                <div class='manage_select_button_img'>
+                                    <img src='/insert/photo/department.png'>
+                                </div>
+                                <div class='manage_select_button_font'>
+                                    学 科
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--左レイヤーのUIはここまで-->
+
+                <!--右レイヤー-->
+                <div MA_frame='admin_right_frame' class='admin_right_rayer'>
+                    <!--出欠-->
+                    <div MA_right='attend_first' MA_right_show='on' class='admin_lecture'>
+                        <div class='admin_home_hedder'>
+                            <div class='admin_home_hedder_font'>
+                                出欠
+                            </div>
+                        </div>
+                        <div class='admin_lecture_rayer'>
+                            <div class='admin_lecture_select_rayer' MA_selectblock='on'>
+                                <div class='admin_lecture_select'>
+                                    <div class='admin_lecture_select_img'>
+                                        <img src='/insert/photo/bar.png'>
+                                    </div>
+                                    <div class='admin_lecture_select_font'>
+                                        条件検索
+                                    </div>
+                                    <form MA_form='sub_attend_form' ACTION='javascript:void(0);'>
+                                        <div class='admin_lecture_select_size'>
+                                            <div class='selectbox-2'>
+                                                <div class='selectbox-3'>
+                                                    <div class='selectbox-4'>
+                                                        <div class='selectbox-font'>曜日</div>
+                                                        <div class='selectbox-5'>
+                                                            <select name="week_day">
+                                                                <option value='1'>月曜</option>
+                                                                <option value='2'>試験</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class='selectbox-3'>
+                                                    <div class='selectbox-4'>
+                                                        <div class='selectbox-font'>先生</div>
+                                                        <div class='selectbox-5'>
+                                                            <select name="teacher">
+                                                                <option value='1'>A先生</option>
+                                                                <option value='2'>試験</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='selectbox-2'>
+                                                <div class='selectbox-3'>
+                                                    <div class='selectbox-4'>
+                                                        <div class='selectbox-font'>学年</div>
+                                                        <div class='selectbox-5'>
+                                                            <select name="grade">
+                                                                <option value='1'>2年生</option>
+                                                                <option value='2'>試験</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class='selectbox-3'>
+                                                    <div class='selectbox-4'>
+                                                        <div class='selectbox-font'>学科</div>
+                                                        <div class='selectbox-5'>
+                                                            <select name="subject">
+                                                                <option value='1'>建築設計家</option>
+                                                                <option value='2'>試験</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class='lecture_table_rayer'>
+                                <div MA_frame="lecture_select" class='admin_lecture_table'>
+                                    <div class='admin_blue_rayer'>
+                                        <div class='lecture_teacher'>A先生</div>
+                                        <div class='lecture_name'>CAD2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築構造2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築法規2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>CAD2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築構造2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築法規2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>CAD2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築構造2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築法規2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>CAD2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築構造2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築法規2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>CAD2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築構造2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築法規2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>CAD2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築構造2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築法規2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--出欠2-->
+                    <div MA_right='attend_second' MA_right_show='' class='attend_second'>
+                        <div class='admin_home_hedder'>
+                            <div class='admin_home_hedder_font'>
+                                出欠
+                            </div>
+                        </div>
+                        <div class='attend_second_rayer'>
+                            <div class='manage_select_button'>
+                                <div class='manage_select_button_img'>
+                                    <img src='/insert/photo/return.svg'>
+                                </div>
+                                <div class='manage_select_button_font'>
+                                    授業選択に戻る
+                                </div>
+                            </div>
+                            <div class='admin_lecture_name_font'>
+                                <span MA_character='lecture_name'>CAD2</span>
+                            </div>
+                            <button type='button' MA_button='lecture_end' MA_button_show='on'>授業を終了する</button>
+                            <button type='button' MA_button='lock' MA_button_show='off'>ロックをする</button>
+                            <button type='button' MA_button='cancellation' MA_button_show='off'>ロックを解除する</button>
+                            <select MA_select='sub_order'>
+                                <option value='1'>2回目</option>
+                                <option value='2'>3回目</option>
+                            </select>
+                            <div><span MA_character='sub_implementation'>未実施</span></div>
+                            <div class='attend_table'>
+                                <table MA_table='sub_attend'>
+                                    <thead>
+                                        <tr>
+                                            <td>学籍番号</td>
+                                            <td>名前</td>
+                                            <td>出欠</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>
+                                                <label><input type="radio" name='change'>出席</label>
+                                                <label><input type="radio" name='change'>遅刻</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--成績-->
+                    <div MA_right='grades_first' MA_right_show='' class='grades_first'>
+                        <!--出欠のホームと同じ-->
+                        <div class='admin_home_hedder'>
+                            <div class='admin_home_hedder_font'>
+                                成績
+                            </div>
+                        </div>
+                        <div class='admin_lecture_rayer'>
+                            <div class='admin_lecture_select_rayer' MA_selectblock='on'>
+                                <div class='admin_lecture_select'>
+                                    <div class='admin_lecture_select_img'>
+                                        <img src='/insert/photo/bar.png'>
+                                    </div>
+                                    <div class='admin_lecture_select_font'>
+                                        条件検索
+                                    </div>
+                                    <form MA_form='sub_attend_form' ACTION='javascript:void(0);'>
+                                        <div class='admin_lecture_select_size'>
+                                            <div class='selectbox-2'>
+                                                <div class='selectbox-3'>
+                                                    <div class='selectbox-4'>
+                                                        <div class='selectbox-font'>曜日</div>
+                                                        <div class='selectbox-5'>
+                                                            <select name="week_day">
+                                                                <option value='1'>月曜</option>
+                                                                <option value='2'>試験</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class='selectbox-3'>
+                                                    <div class='selectbox-4'>
+                                                        <div class='selectbox-font'>先生</div>
+                                                        <div class='selectbox-5'>
+                                                            <select name="teacher">
+                                                                <option value='1'>A先生</option>
+                                                                <option value='2'>試験</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='selectbox-2'>
+                                                <div class='selectbox-3'>
+                                                    <div class='selectbox-4'>
+                                                        <div class='selectbox-font'>学年</div>
+                                                        <div class='selectbox-5'>
+                                                            <select name="grade">
+                                                                <option value='1'>2年生</option>
+                                                                <option value='2'>試験</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class='selectbox-3'>
+                                                    <div class='selectbox-4'>
+                                                        <div class='selectbox-font'>学科</div>
+                                                        <div class='selectbox-5'>
+                                                            <select name="subject">
+                                                                <option value='1'>建築設計家</option>
+                                                                <option value='2'>試験</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class='lecture_table_rayer'>
+                                <div MA_frame="lecture_select" class='admin_lecture_table'>
+                                    <div class='admin_blue_rayer'>
+                                        <div class='lecture_teacher'>A先生</div>
+                                        <div class='lecture_name'>CAD2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築構造2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築法規2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>CAD2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築構造2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築法規2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>CAD2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築構造2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築法規2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>CAD2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築構造2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築法規2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>CAD2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築構造2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築法規2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>CAD2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築構造2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                    <div class='admin_blue_rayer'>
+                                        <div>A先生</div>
+                                        <div class='lecture_name'>建築法規2</div>
+                                        <div class='lecture_weekday'>月曜1コマ目</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--成績2-->
+                    <div MA_right='grades_second' MA_right_show='' class='grades_second'>
+                        <div class='admin_home_hedder'>
+                            <div class='admin_home_hedder_font'>
+                                成績
+                            </div>
+                        </div>
+                        <div class='grades_second_rayer'>
+                            <div><button type='button'>↑授業選択に戻る</button></div>
+                            <div><span MA_character='lecture_name'>CAD2</span></div>
+                            <button type='button' MA_button='lock' MA_button_show='on'>ロックする</button>
+                            <button type='button' MA_button='cancellation' MA_button_show='off'>ロックを解除する</button>
+                            <button type='button' MA_button='keep' MA_button_show='off'>保存する</button>
+                            <select MA_select='sub_grades_exam'>
+                                <option value='1'>前期中間</option>
+                                <option value='2'>前期期末</option>
+                            </select>
+                            <div><span MA_character='management_implementation'>未実施</span></div>
+                            <div class='grades_table'>
+                                <table MA_table='sub_grades'>
+                                    <thead>
+                                        <tr>
+                                            <td>学籍番号</td>
+                                            <td>試験</td>
+                                            <td>前期中間</td>
+                                            <td>前期期末</td>
+                                            <td>前期中間</td>
+                                            <td>前期期末</td>
+                                            <td>総合</td>
+                                            <td>評価</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody MA_id='attend_test_table'>
+                                        <tr>
+                                            <td>2000001</td>
+                                            <td>田中太郎</td>
+                                            <td>前期中間：〇点</td>
+                                            <td>前期期末：〇点</td>
+                                            <td>後期中間：〇点</td>
+                                            <td>後期期末：〇点</td>
+                                            <td>総合</td>
+                                            <td>良</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000002</td>
+                                            <td>田中太郎</td>
+                                            <td>前期中間：〇点</td>
+                                            <td>前期期末：〇点</td>
+                                            <td>後期中間：〇点</td>
+                                            <td>後期期末：〇点</td>
+                                            <td>総合</td>
+                                            <td>良</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000003</td>
+                                            <td>田中太郎</td>
+                                            <td>前期中間：〇点</td>
+                                            <td>前期期末：〇点</td>
+                                            <td>後期中間：〇点</td>
+                                            <td>後期期末：〇点</td>
+                                            <td>総合</td>
+                                            <td>良</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000004</td>
+                                            <td>田中太郎</td>
+                                            <td>前期中間：〇点</td>
+                                            <td>前期期末：〇点</td>
+                                            <td>後期中間：〇点</td>
+                                            <td>後期期末：〇点</td>
+                                            <td>総合</td>
+                                            <td>良</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000005</td>
+                                            <td>田中太郎</td>
+                                            <td>前期中間：〇点</td>
+                                            <td>前期期末：〇点</td>
+                                            <td>後期中間：〇点</td>
+                                            <td>後期期末：〇点</td>
+                                            <td>総合</td>
+                                            <td>良</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000006</td>
+                                            <td>田中太郎</td>
+                                            <td>前期中間：〇点</td>
+                                            <td>前期期末：〇点</td>
+                                            <td>後期中間：〇点</td>
+                                            <td>後期期末：〇点</td>
+                                            <td>総合</td>
+                                            <td>良</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000007</td>
+                                            <td>田中太郎</td>
+                                            <td>前期中間：〇点</td>
+                                            <td>前期期末：〇点</td>
+                                            <td>後期中間：〇点</td>
+                                            <td>後期期末：〇点</td>
+                                            <td>総合</td>
+                                            <td>良</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000008</td>
+                                            <td>田中太郎</td>
+                                            <td>前期中間：〇点</td>
+                                            <td>前期期末：〇点</td>
+                                            <td>後期中間：〇点</td>
+                                            <td>後期期末：〇点</td>
+                                            <td>総合</td>
+                                            <td>良</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2000009</td>
+                                            <td>田中太郎</td>
+                                            <td>前期中間：〇点</td>
+                                            <td>前期期末：〇点</td>
+                                            <td>後期中間：〇点</td>
+                                            <td>後期期末：〇点</td>
+                                            <td>総合</td>
+                                            <td>良</td>
+                                        </tr>
+                                        <tr>
+                                            <td>20000010</td>
+                                            <td>田中太郎</td>
+                                            <td>前期中間：〇点</td>
+                                            <td>前期期末：〇点</td>
+                                            <td>後期中間：〇点</td>
+                                            <td>後期期末：〇点</td>
+                                            <td>総合</td>
+                                            <td>良</td>
+                                        </tr>
+                                        <!--見えない行（触れなくする）-->
+                                        <tr>
+                                            <td><div></div></td>
+                                            <td><div></div></td>
+                                            <td><div></div></td>
+                                            <td><div></div></td>
+                                            <td><div></div></td>
+                                            <td><div></div></td>
+                                            <td><div></div></td>
+                                            <td><div></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--履修-->
+                    <div MA_right='course_first' MA_right_show=''>
+                        <div>
+                            <button type='button'>まとめて履修登録</button>
+                            <button type='button'>テーブル検索に移動</button>
+                        </div>
+                        <form MA_form='lecture_form' ACTION='javascript:void(0);'>
+                            <div>
+                                <select name="grade">
+                                    <option value='1'>2年生</option>
+                                    <option value='2'>試験</option>
+                                </select>
+                            </div>
+                            <div>
+                                <select name="teacher">
+                                    <option value='1'>A先生</option>
+                                    <option value='2'>試験</option>
+                                </select>
+                                <select name="subject">
+                                    <option value='1'>建築設計家</option>
+                                    <option value='2'>試験</option>
+                                </select>
+                            </div>
+                        </form>
+
+                        <div MA_frame="lecture_select" class='lecture_select'>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>CAD2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                                <div class='right_rayer'>20人履修</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>無</div>
+                                <div class='lecture_name'>登録なし</div>
+                                <div class='lecture_weekday'>月曜2コマ目</div>
+                                <div class='right_rayer'>0人履修</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築法規2</div>
+                                <div class='lecture_weekday'>月曜3コマ目</div>
+                                <div class='right_rayer'>20人履修</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>CAD2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                                <div class='right_rayer'>20人履修</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築構造2</div>
+                                <div class='lecture_weekday'>月曜2コマ目</div>
+                                <div class='right_rayer'>20人履修</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築法規2</div>
+                                <div class='lecture_weekday'>月曜3コマ目</div>
+                                <div class='right_rayer'>20人履修</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--履修2-->
+                    <div MA_right='course_second' MA_right_show=''>
+                        <div>
+                            <button type='button'>時間割検索に移動</button>
+                            <span class='right_rayer'>建築法規2で検索中</span>
+                        </div>
+                        <div class='course_button'>
+                            <button type='button'>新規追加</button>
+                            <button type='button'>検索＆ソート</button>
+                        </div>
+                        <div class='course_table'>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>授業</td>
+                                        <td>授業時間</td>
+                                        <td>対象学科</td>
+                                        <td>対象学年</td>
+                                        <td>担当講師</td>
+                                        <td>学生</td>
+                                        <td>学籍番号</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>建築法規2</td>
+                                        <td>前期</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>桜井 造科</td>
+                                        <td>鈴木 憲明</td>
+                                        <td>200001</td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規2</td>
+                                        <td>前期</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>桜井 造科</td>
+                                        <td>鈴木 憲明</td>
+                                        <td>200001</td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規2</td>
+                                        <td>前期</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>桜井 造科</td>
+                                        <td>鈴木 憲明</td>
+                                        <td>200001</td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規2</td>
+                                        <td>前期</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>桜井 造科</td>
+                                        <td>鈴木 憲明</td>
+                                        <td>200001</td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規2</td>
+                                        <td>前期</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>桜井 造科</td>
+                                        <td>鈴木 憲明</td>
+                                        <td>200001</td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規2</td>
+                                        <td>前期</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>桜井 造科</td>
+                                        <td>鈴木 憲明</td>
+                                        <td>200001</td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規2</td>
+                                        <td>前期</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>桜井 造科</td>
+                                        <td>鈴木 憲明</td>
+                                        <td>200001</td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規2</td>
+                                        <td>前期</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>桜井 造科</td>
+                                        <td>鈴木 憲明</td>
+                                        <td>200001</td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規2</td>
+                                        <td>前期</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>桜井 造科</td>
+                                        <td>鈴木 憲明</td>
+                                        <td>200001</td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規2</td>
+                                        <td>前期</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>桜井 造科</td>
+                                        <td>鈴木 憲明</td>
+                                        <td>200001</td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!--授業-->
+                    <div MA_right='lecture_first' MA_right_show=''>
+                        <div>
+                            <button type='button'>テーブル検索に移動</button>
+                        </div>
+                        <form MA_form='lecture_form' ACTION='javascript:void(0);'>
+                            <div>
+                                <select name="grade">
+                                    <option value='1'>2年生</option>
+                                    <option value='2'>試験</option>
+                                </select>
+                            </div>
+                            <div>
+                                <select name="week_day">
+                                    <option value='1'>月曜日</option>
+                                    <option value='2'>試験</option>
+                                </select>
+                                <select name="subject">
+                                    <option value='1'>建築設計家</option>
+                                    <option value='2'>試験</option>
+                                </select>
+                            </div>
+                        </form>
+
+                        <div MA_frame="lecture_select" class='lecture_select'>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>CAD2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築構造2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築法規2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>CAD2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築構造2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                            <div class='admin_blue_rayer'>
+                                <div>A先生</div>
+                                <div class='lecture_name'>建築法規2</div>
+                                <div class='lecture_weekday'>月曜1コマ目</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--授業2-->
+                    <div MA_rignt='lecture_second' MA_right_show='' class='lecture'>
+                        <div><span MA_character='lecture_name'>検索条件</span></div>
+                        <div class='lecture_button'>
+                            <button type='button'>時間割検索に移動</button>
+                            <button type='button'>新規追加</button>
+                            <button type='button'>検索＆ソート</button>
+                        </div>
+                        <div class='setting_lecture_table'>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>授業名</td>
+                                        <td>対象学科</td>
+                                        <td>対象学年</td>
+                                        <td>コマ割り</td>
+                                        <td>授業予定回数</td>
+                                        <td>必要授業回数</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>建築法規２</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>月曜1コマ目</td>
+                                        <td>15回</td>
+                                        <td>12回</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規２</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>月曜1コマ目</td>
+                                        <td>15回</td>
+                                        <td>12回</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規２</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>月曜1コマ目</td>
+                                        <td>15回</td>
+                                        <td>12回</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規２</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>月曜1コマ目</td>
+                                        <td>15回</td>
+                                        <td>12回</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規２</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>月曜1コマ目</td>
+                                        <td>15回</td>
+                                        <td>12回</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規２</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>月曜1コマ目</td>
+                                        <td>15回</td>
+                                        <td>12回</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規２</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>月曜1コマ目</td>
+                                        <td>15回</td>
+                                        <td>12回</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築法規２</td>
+                                        <td>建築設計科</td>
+                                        <td>2年生</td>
+                                        <td>月曜1コマ目</td>
+                                        <td>15回</td>
+                                        <td>12回</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!--学生-->
+                    <div MA_right='student' class='student' MA_right_show=''>
+                        <div><span MA_character='search_criteria' class='right_rayer'>検索条件</span></div>
+                        <div class='student_button'>
+                            <button type='button'>新規追加</button>
+                            <button type='button'>検索＆ソート</button>
+                        </div>
+                        <div class="studenttable">
+                            <table MA_table='student'>
+                                <thead>
+                                    <tr>
+                                        <td>学籍番号</td>
+                                        <td>名前</td>
+                                        <td>フリガナ</td>
+                                        <td>学科</td>
+                                        <td>学年</td>
+                                        <td>卒業見込み</td>
+                                        <td>高校名</td>
+                                        <td>在学状態</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>100001</td>
+                                        <td>浅田 直哉</td>
+                                        <td>アサダ ナオヤ</td>
+                                        <td>建築設計科</td>
+                                        <td>1年生</td>
+                                        <td>2026/3/31</td>
+                                        <td>第二高校</td>
+                                        <td>在学中</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>100002</td>
+                                        <td>浅田 直哉</td>
+                                        <td>アサダ ナオヤ</td>
+                                        <td>建築設計科</td>
+                                        <td>1年生</td>
+                                        <td>2026/3/31</td>
+                                        <td>第二高校</td>
+                                        <td>在学中</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>100003</td>
+                                        <td>浅田 直哉</td>
+                                        <td>アサダ ナオヤ</td>
+                                        <td>建築設計科</td>
+                                        <td>1年生</td>
+                                        <td>2026/3/31</td>
+                                        <td>第二高校</td>
+                                        <td>在学中</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>100004</td>
+                                        <td>浅田 直哉</td>
+                                        <td>アサダ ナオヤ</td>
+                                        <td>建築設計科</td>
+                                        <td>1年生</td>
+                                        <td>2026/3/31</td>
+                                        <td>第二高校</td>
+                                        <td>在学中</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>100005</td>
+                                        <td>浅田 直哉</td>
+                                        <td>アサダ ナオヤ</td>
+                                        <td>建築設計科</td>
+                                        <td>1年生</td>
+                                        <td>2026/3/31</td>
+                                        <td>第二高校</td>
+                                        <td>在学中</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>100006</td>
+                                        <td>浅田 直哉</td>
+                                        <td>アサダ ナオヤ</td>
+                                        <td>建築設計科</td>
+                                        <td>1年生</td>
+                                        <td>2026/3/31</td>
+                                        <td>第二高校</td>
+                                        <td>在学中</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>100007</td>
+                                        <td>浅田 直哉</td>
+                                        <td>アサダ ナオヤ</td>
+                                        <td>建築設計科</td>
+                                        <td>1年生</td>
+                                        <td>2026/3/31</td>
+                                        <td>第二高校</td>
+                                        <td>在学中</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>100008</td>
+                                        <td>浅田 直哉</td>
+                                        <td>アサダ ナオヤ</td>
+                                        <td>建築設計科</td>
+                                        <td>1年生</td>
+                                        <td>2026/3/31</td>
+                                        <td>第二高校</td>
+                                        <td>在学中</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>100009</td>
+                                        <td>浅田 直哉</td>
+                                        <td>アサダ ナオヤ</td>
+                                        <td>建築設計科</td>
+                                        <td>1年生</td>
+                                        <td>2026/3/31</td>
+                                        <td>第二高校</td>
+                                        <td>在学中</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!--講師-->
+                    <div MA_right='teacher' class='teacher' MA_right_show=''>
+                        <div class='teacher_button'>
+                            <button type='button'>新規追加</button>
+                        </div>
+                        <div class='teachertable'>
+                            <table MA_table='teacher'>
+                                <thead>
+                                    <tr>
+                                        <td>名前</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>市川翔太</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>市川翔太</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>市川翔太</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>市川翔太</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>市川翔太</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>市川翔太</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>市川翔太</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>市川翔太</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>市川翔太</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>市川翔太</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>市川翔太</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>市川翔太</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!--学科-->
+                    <div MA_right='department' class='department' MA_right_show=''>
+                        <div class='department_button'>
+                            <button type='button'>新規追加</button>
+                        </div>
+                        <div class='departmenttable'>
+                            <table MA_table='department'>
+                                <thead>
+                                    <tr>
+                                        <td>学科名</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>建築史</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築史</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築史</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築史</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築史</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築史</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築史</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築史</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築史</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築史</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築史</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>建築史</td>
+                                        <td><button type='button'>編集</button></td>
+                                        <td><button type='button'>削除</button></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--右レイヤーのUIはここまで-->
+
+
+
+            </div>
+            <!--それ以外のUIはここまで-->
+        </div>
+        <!--下レイヤーのUIはここまで-->
+    </div>
+    <!--管理画面のUIはここまで-->
+
+    <!--ダイアログ関係-->
+    <!--出欠アカウントメニュー-->
+    <div MA_dialog='menu' MA_dialog_show='off'>
+        <form MA_id='attend_menu' ACTION='javascript:void(0);'>
+            <div class='menu1'>
+                <div class='menu2'>
+                    <div><button type='button'>←戻る</button></div>
+                    <div><span MA_text='display_size'>画面サイズ：中</span></div>
+                    <div><button type='button'>画面サイズ変更</button></div>
+                    <div><button type='button'>パスワード変更</button></div>
+                    <div><button type='button'>ログアウト</button></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--出欠パスワード変更-->
+    <div MA_dialog='pass' MA_dialog_show='off'>
+        <div class='menu1'>
+            <div class='menu2'>
+                <div><button type='button'>←戻る</button></div>
+                <div>以下にパスワードを入力してください</div>
+                <form MA_form='sub_pass' ACTION='javascript:void(0);'>
+                    <div><input type='text' name='pass' required></div>
+                    <div><input type='text' name='pass_check' pattern='^[0-9A-Za-z]+$' placeholder='確認用' required></div>
+                </form>
+                <div><button type='button'>変更する</button></div>
+            </div>
+        </div>
+    </div>
+    <!--管理アカウントメニューダイアログ-->
+    <div MA_dialog='manage' MA_dialog_show='off'>
+        <div class='menu1'>
+            <div class='menu2'>
+                <div><button type='button'>←戻る</button></div>
+                <div><button type='button'>出欠アカウントパスワード変更</button></div>
+                <div><button type='button'>管理アカウントパスワード変更</button></div>
+                <div><button type='button'>ログアウト</button></div>
+            </div>
+        </div>
+    </div>
+    <!--管理パスワード変更-->
+    <div MA_dialog='manage' MA_dialog_show='off'>
+        <div class='menu1'>
+            <div class='menu2'>
+                <div><button type='button'>←戻る</button></div>
+                <div>以下にパスワードを入力してください</div>
+                <form MA_form='manage_pass' ACTION='javascript:void(0);'>
+                    <div><input type='text' name='pass' required></div>
+                    <div><input type='text' name='pass_check' pattern='^[0-9A-Za-z]+$' placeholder='確認用' required></div>
+                </form>
+                <div><button type='button'>変更する</button></div>
+            </div>
+        </div>
+    </div>
+    <!--昇級処理-->
+    <div MA_dialog='promotion' MA_dialog_show='off'>
+        <div class='menu1'>
+            <div class='menu2'>
+                <div>
+                    <button type='button'>←戻る</button>
+                    <button type='button'>以下の内容で登録する</button>
+                </div>
+
+                <div>学年：1年生</div>
+                <div>在学状態：在学中→2年生</div>
+                <div>
+                    <button type='button'>編集</button>
+                    <button type='button'>削除</button>
+                </div>
+                <div>学年：2年生</div>
+                <div>在学状態：在学中</div>
+                <div>研究室希望：希望あり→研究科</div>
+                <div>
+                    <button type='button'>編集</button>
+                    <button type='button'>削除</button>
+                </div>
+                <div>学年：2年生</div>
+                <div>在学状態：在学中</div>
+                <div>研究室希望：希望なし→OB・OG</div>
+                <div>
+                    <button type='button'>編集</button>
+                    <button type='button'>削除</button>
+                </div>
+                <div>
+                    <form MA_form='promotion'>
+                        <select MA_text='conditions' required>
+                            <option>学年</option>
+                            <option>在学状態</option>
+                        </select>
+                        ：
+                        <select MA_text='detail_conditions' required>
+                            <option>1年生</option>
+                            <option>2年生</option>
+                        </select>
+                        →
+                        <select MA_text='' required>
+                            <option>2年生</option>
+                            <option>研究科</option>
+                            <option>OB・OG</option>
+                        </select>
+                </div>
+                <div>
+                    <button type='button' MA_button='addition'>検索条件を追加</button>
+                    <button type='button' MA_button='registration'>登録</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--学生追加-->
+    <div MA_dialog='student_addition' MA_dialog_show='off'>
+        <div class='menu1'>
+            <div class='menu2'>
+                <div>
+                    <button type='button'>←戻る</button>
+                    <button type='button'>下記の内容で登録する</button>
+                </div>
+                <!--入力欄-->
+                <div>
+                    <form MA_form='student_addition' ACTION='javascript:void(0);'>
+                        <div>性別：
+                            <label><input type="radio" name="gender" value='1' required>男性</label>
+                            <label><input type="radio" name="gender" value='2' required>女性</label>
+                        </div>
+                        <div>学籍番号：
+                            <input type='text' name='studentnumber' required>
+                        </div>
+                        <div>苗字：
+                            <input type='text' name='lastname' required>
+                        </div>
+                        <div>苗字フリガナ：
+                            <input type='text' name='lastfurigana' pattern='[\u30A1-\u30FA\u30FC]+' required>
+                        </div>
+                        <div>名前：
+                            <input type='text' name='firstname' required>
+                        </div>
+                        <div>名前フリガナ：
+                            <input type='text' name='firstfurigana' pattern='[\u30A1-\u30FA\u30FC]+' required>
+                        </div>
+                        <div>ミドルネーム
+                            <input type='text' name='addname'>
+                        </div>
+                        <div>苗字・名前どちら先：
+                            <label><input type="radio" name="nametype" value='0' required>苗字</label>
+                            <label><input type="radio" name="nametype" value='1' required>名前</label>
+                        </div>
+                        <div>学科：
+                            <select name='subject' required>
+                                <option>建築設計科</option>
+                                <option>インテリアデザイン科</option>
+                            </select>
+                        </div>
+                        <div>学年：
+                            <select name='grade' required>
+                                <option>1年生</option>
+                                <option>2年生</option>
+                            </select>
+                        </div>
+                        <div>入学年月日：
+                            <input type='text' name='entrydate'>
+                        </div>
+                        <div>卒業見込み年月日：
+                            <input type='text' name='enddate'>
+                        </div>
+                        <div>高校名：
+                            <input type='text' name='higtschool'>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--授業登録-->
+    <div MA_dialog='lecture_addition' MA_dialog_show='off'>
+        <div class='menu1'>
+            <div class='menu2'>
+                <div>
+                    <button type='button'>←戻る</button>
+                    <button type='button'>下記の内容で登録する</button>
+                </div>
+                <!--入力欄-->
+                <div>
+                    <form MA_form='course_addition' ACTION='javascript:void(0);'>
+                        <div>授業名：
+                            <input type='text' name='name' required>
+                        </div>
+                        <div>対象学科：
+                            <input type='text' name='subject' required>
+                        </div>
+                        <div>対象学年：
+                            <input type='text' name='grade' required>
+                        </div>
+                        <div>担当講師
+                            <select name='teacher'>
+                                <option>市川翔太</option>
+                                <option>市川翔太</option>
+                                <option>市川翔太</option>
+                                <option>市川翔太</option>
+                                <option>市川翔太</option>
+                                <option>市川翔太</option>
+                            </select>
+                        </div>
+                        <div>授業の種類：
+                            <label><input type="radio" name="type" value='1' required>通年</label>
+                            <label><input type="radio" name="type" value='2' checked required>学期別</label>
+                        </div>
+                        <div>授業予定回数：
+                            <input type='text' name='maxcount' required>
+                        </div>
+                        <div>学期：
+                            <input type='text' name='season'>
+                        </div>
+                        <div>必要出席回数：
+                            <input type='text' name='needcount' required>
+                        </div>
+                        <div>試験入力：
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td></td>
+                                        <td>試験名</td>
+                                        <td>コマ割り</td>
+                                        <td>学期</td>
+                                    </tr>
+                                </thead>
+                                <tbody name='exam'>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input type='text'></td>
+                                        <td><input type='text'></td>
+                                        <td><input type='text'></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><input type='text'></td>
+                                        <td><input type='text'></td>
+                                        <td><input type='text'></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><input type='text'></td>
+                                        <td><input type='text'></td>
+                                        <td><input type='text'></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>曜日とコマ割り入力：
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td></td>
+                                        <td>試験名</td>
+                                        <td>コマ割り</td>
+                                    </tr>
+                                </thead>
+                                <tbody name='timetable'>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input type='text'></td>
+                                        <td><input type='text'></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><input type='text'></td>
+                                        <td><input type='text'></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><input type='text'></td>
+                                        <td><input type='text'></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--講師追加-->
+    <div MA_dialog='teacher_addition' MA_dialog_show='off'>
+        <div class='menu1'>
+            <div class='menu2'>
+                <div>
+                    <button type='button'>←戻る</button>
+                    <button type='button'>下記の内容で登録する</button>
+                </div>
+                <div>
+                    <form MA_form='teacher_addition' ACTION='javascript:void(0);'>
+                        <div>講師名前：
+                            <input type='text' name='name' required>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--学科追加-->
+    <div MA_dialog='department_addition' MA_dialog_show='off'>
+        <div class='menu1'>
+            <div class='menu2'>
+                <div>
+                    <button type='button'>←戻る</button>
+                    <button type='button'>下記の内容で登録する</button>
+                </div>
+                <div>
+                    <form MA_form='department_addition' ACTION='javascript:void(0);'>
+                        <div>学科名：
+                            <input type='text' name='name' required>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--学生検索-->
+    <div MA_dialog='student_search' MA_dialog_show='off'>
+        <div class='menu1'>
+            <div class='menu2'>
+                <div>
+                    <button type='button'>←戻る</button>
+                    <button type='button'>下記の内容で登録する</button>
+                </div>
+                <!--入力欄-->
+                <div>
+                    <form MA_form='student_addition' ACTION='javascript:void(0);'>
+                        <div>削除済みを表示：
+                            <select name='deleteflag' required>
+                                <option>表示しない</option>
+                                <option>表示する</option>
+                            </select>
+                        </div>
+                        <div>性別：
+                            <label><input type="radio" name="gender" value='1' required>男性</label>
+                            <label><input type="radio" name="gender" value='2' required>女性</label>
+                        </div>
+                        <div>学籍番号：
+                            <input type='text' name='studentnumber' required>
+                        </div>
+                        <div>苗字：
+                            <input type='text' name='lastname' required>
+                        </div>
+                        <div>苗字フリガナ：
+                            <input type='text' name='lastfurigana' pattern='[\u30A1-\u30FA\u30FC]+' required>
+                        </div>
+                        <div>名前：
+                            <input type='text' name='firstname' required>
+                        </div>
+                        <div>名前フリガナ：
+                            <input type='text' name='firstfurigana' pattern='[\u30A1-\u30FA\u30FC]+' required>
+                        </div>
+                        <div>ミドルネーム
+                            <input type='text' name='addname'>
+                        </div>
+                        <div>苗字・名前どちら先：
+                            <label><input type="radio" name="nametype" value='0' required>苗字</label>
+                            <label><input type="radio" name="nametype" value='1' required>名前</label>
+                        </div>
+                        <div>学科：
+                            <select name='subject' required>
+                                <option>建築設計科</option>
+                                <option>インテリアデザイン科</option>
+                            </select>
+                        </div>
+                        <div>学年：
+                            <select name='grade' required>
+                                <option>1年生</option>
+                                <option>2年生</option>
+                            </select>
+                        </div>
+                        <div>入学年月日：
+                            <input type='text' name='entrydate'>
+                        </div>
+                        <div>卒業見込み年月日：
+                            <input type='text' name='enddate'>
+                        </div>
+                        <div>高校名：
+                            <input type='text' name='higtschool'>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--印書検索-->
+    <div MA_dialog='printing_student' MA_dialog_show='off'>
+        <div class='menu1'>
+            <div class='menu2'>
+                <div>
+                    <button type='button'>←戻る</button>
+                    <button type='button'>検索・ソート</button>
+                    <button type='button'>選択する</button>
+                </div>
+                <div class="student_table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>学籍番号</td>
+                                <td>名前</td>
+                                <td>フリガナ</td>
+                                <td>学科</td>
+                                <td>学年</td>
+                                <td>卒業見込み</td>
+                                <td>高校名</td>
+                                <td>在学状態</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>100001</td>
+                                <td>浅田 直哉</td>
+                                <td>アサダ ナオヤ</td>
+                                <td>建築設計科</td>
+                                <td>1年生</td>
+                                <td>2026/3/31</td>
+                                <td>第二高校</td>
+                                <td>在学中</td>
+                                <td><button type='button'>編集</button></td>
+                                <td><button type='button'>削除</button></td>
+                            </tr>
+                            <tr>
+                                <td>100002</td>
+                                <td>浅田 直哉</td>
+                                <td>アサダ ナオヤ</td>
+                                <td>建築設計科</td>
+                                <td>1年生</td>
+                                <td>2026/3/31</td>
+                                <td>第二高校</td>
+                                <td>在学中</td>
+                                <td><button type='button'>編集</button></td>
+                                <td><button type='button'>削除</button></td>
+                            </tr>
+                            <tr>
+                                <td>100003</td>
+                                <td>浅田 直哉</td>
+                                <td>アサダ ナオヤ</td>
+                                <td>建築設計科</td>
+                                <td>1年生</td>
+                                <td>2026/3/31</td>
+                                <td>第二高校</td>
+                                <td>在学中</td>
+                                <td><button type='button'>編集</button></td>
+                                <td><button type='button'>削除</button></td>
+                            </tr>
+                            <tr>
+                                <td>100004</td>
+                                <td>浅田 直哉</td>
+                                <td>アサダ ナオヤ</td>
+                                <td>建築設計科</td>
+                                <td>1年生</td>
+                                <td>2026/3/31</td>
+                                <td>第二高校</td>
+                                <td>在学中</td>
+                                <td><button type='button'>編集</button></td>
+                                <td><button type='button'>削除</button></td>
+                            </tr>
+                            <tr>
+                                <td>100005</td>
+                                <td>浅田 直哉</td>
+                                <td>アサダ ナオヤ</td>
+                                <td>建築設計科</td>
+                                <td>1年生</td>
+                                <td>2026/3/31</td>
+                                <td>第二高校</td>
+                                <td>在学中</td>
+                                <td><button type='button'>編集</button></td>
+                                <td><button type='button'>削除</button></td>
+                            </tr>
+                            <tr>
+                                <td>100006</td>
+                                <td>浅田 直哉</td>
+                                <td>アサダ ナオヤ</td>
+                                <td>建築設計科</td>
+                                <td>1年生</td>
+                                <td>2026/3/31</td>
+                                <td>第二高校</td>
+                                <td>在学中</td>
+                                <td><button type='button'>編集</button></td>
+                                <td><button type='button'>削除</button></td>
+                            </tr>
+                            <tr>
+                                <td>100007</td>
+                                <td>浅田 直哉</td>
+                                <td>アサダ ナオヤ</td>
+                                <td>建築設計科</td>
+                                <td>1年生</td>
+                                <td>2026/3/31</td>
+                                <td>第二高校</td>
+                                <td>在学中</td>
+                                <td><button type='button'>編集</button></td>
+                                <td><button type='button'>削除</button></td>
+                            </tr>
+                            <tr>
+                                <td>100008</td>
+                                <td>浅田 直哉</td>
+                                <td>アサダ ナオヤ</td>
+                                <td>建築設計科</td>
+                                <td>1年生</td>
+                                <td>2026/3/31</td>
+                                <td>第二高校</td>
+                                <td>在学中</td>
+                                <td><button type='button'>編集</button></td>
+                                <td><button type='button'>削除</button></td>
+                            </tr>
+                            <tr>
+                                <td>100009</td>
+                                <td>浅田 直哉</td>
+                                <td>アサダ ナオヤ</td>
+                                <td>建築設計科</td>
+                                <td>1年生</td>
+                                <td>2026/3/31</td>
+                                <td>第二高校</td>
+                                <td>在学中</td>
+                                <td><button type='button'>編集</button></td>
+                                <td><button type='button'>削除</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--ダイアログのUIはここまで-->
+
+    <script type='module' src="/insert/js/script.js"></script>
+</body>
+
+</html>
